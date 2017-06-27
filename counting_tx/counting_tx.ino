@@ -57,14 +57,20 @@ void loop()
           digitalWrite(9,LOW);//input to relay to turn off supply
           //digitalWrite(13, HIGH);
           delay(3000);
-          Serial.print('s');/telling plc to pt power back on
+          //Serial.print('s');/telling plc to pt power back on
        }
         else if(inchar=='c')
         {
+           digitalWrite(9,HIGH);//input to relay to turn on supply
           //digitalWrite(13, LOW);
         }
         
   }
+   lcd.clear();
+   lcd.setCursor(0,0);
+   lcd.print(" pulses: ");
+   lcd.setCursor(0,1);
+   lcd.print(" watts used ");
  unsigned long currentMillis = millis();
  
  if (currentMillis - previousMillis >= interval){
@@ -102,11 +108,7 @@ void loop()
    lcd.print("Power exceeded");
    delay(1000);
    watts_used=0;
-   lcd.clear();
-   lcd.setCursor(0,0);
-   lcd.print(" pulses: ");
-   lcd.setCursor(0,1);
-   lcd.print(" watts used ");
+
  }
  
 

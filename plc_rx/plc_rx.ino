@@ -130,6 +130,7 @@ portTwo.listen();
       count=0;
       delay(1000);
       portOne.print('c');
+      lcd.print("Power back on");
       
     }
    }
