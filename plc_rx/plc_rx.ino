@@ -57,6 +57,7 @@ void sendmessage1()
   delay(1000);
   portTwo.write(0x1A);
   delay(1000);
+  lcd.print("message 1.. sent ");
  
 }
 void sendmessage2()
@@ -69,6 +70,7 @@ void sendmessage2()
   delay(1000);
    portTwo.write(0x1A);
   delay(1000);
+   lcd.print("message 2 sent ");
 }
 void sendmessage3()
 {
@@ -82,6 +84,7 @@ void sendmessage3()
   delay(1000);
    portOne.print('d');
   delay(1000);
+   lcd.print("message 3 sent ");
 }
 
 void loop() {
