@@ -25,12 +25,12 @@ void setup() {
   // Start each software serial port
   portOne.begin(9600);
   portTwo.begin(9600);
-  pinMode(13,OUTPUT);
-  digitalWrite(13,LOW);
+  //pinMode(13,OUTPUT);
+ // digitalWrite(13,LOW);
   //lcd
  lcd.display();
- lcd.print(":D");
- delay(1000);
+ lcd.print("PLC RX PART");
+ delay(2000);
  lcd.clear();
  lcd.setCursor(0,0);
  lcd.print(" GSM INITIALIZATION ");
@@ -42,8 +42,9 @@ void setup() {
  delay(100);
  //GSM init done
  //lcd prints it
+ lcd.clear();
  lcd.print(" READY tO GO... ");
-  Serial.println("Ready..."); 
+  
   // Open serial communications and wait for port to open:
   
 }
@@ -103,19 +104,21 @@ void loop() {
       count++;
       if(count==1)
       {
-      digitalWrite(13,HIGH);
+      //digitalWrite(13,HIGH);
       sendmessage1();
-      lcd.print("message one being sent");
+      lcd.print("message 1 being sent");
       }
       else if(count==2)
       {
         sendmessage2();
-        lcd.print("message one being sent");
+        lcd.clear();
+        lcd.print("message 2 being sent");
       }
        else if(count==3)
       {
+        lcd.clear();
         sendmessage3();
-        lcd.print("message one being sent");
+        lcd.print("message 3 being sent");
        
 
 
@@ -131,12 +134,13 @@ portTwo.listen();
     char in = portTwo.read();
     if(in=='s')
     {
-      digitalWrite(13,LOW);
-      delay(10);
+      //digitalWrite(13,LOW);
+     // delay(10);
       portTwo.print("AT+CMGD=1,4"); // delete all SMS
       count=0;
-      delay(1000);
+      //delay(1000);
       portOne.print('c');
+      lcd.clear();
       lcd.print("Power back on");
       
     }

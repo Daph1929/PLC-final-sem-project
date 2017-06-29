@@ -4,7 +4,7 @@
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3); 
 
 const int buttonPin = 2; //input from meter through octocoupler to pin 2 "Counts Pulses"
-const int ledPin = 13;
+//const int ledPin = 13;
 
 int buttonPushCounter = 0;
 int buttonState = 0;
@@ -14,7 +14,7 @@ unsigned long previousMillis = 0;
 
 float watts_used = 0;
 
-const long interval = 5000; 
+const long interval = 20000; 
 
 void setup()
 
@@ -74,9 +74,26 @@ void loop()
  if (currentMillis - previousMillis >= interval){
  
    previousMillis = currentMillis;
-   watts_used =0.3125*buttonPushCounter;
-   lcd.setCursor(12,1);
-   lcd.print(watts_used);
+   //watts_used =0.3125*buttonPushCounter;
+   //lcd.setCursor(12,1);
+   //lcd.print(watts_used);
+
+   if (watts_used >=1.5) 
+ 
+ {
+   Serial.print('a');//send to main station
+   lcd.clear();
+  lcd.print("Power exceeded");
+   delay(1000);
+   watts_used=0;
+   lcd.clear();
+ lcd.setCursor(0,0);
+ lcd.print(" pulses: ");
+ lcd.setCursor(0,1);
+ lcd.print(" watts used ");
+
+   
+ }
    buttonPushCounter=0;
  
  }
@@ -88,32 +105,20 @@ void loop()
    if(buttonState == HIGH) {
    
    buttonPushCounter++;
-   lcd.setCursor(8,0);
-   lcd.print(buttonPushCounter);
-   
+   watts_used =0.3125*buttonPushCounter;
+ lcd.setCursor(8,0);
+ lcd.print(buttonPushCounter);
+ 
+    lcd.setCursor(12,1);
+   lcd.print(watts_used);
    }
    
-   delay(50);
+// delay(50);
  }
  lastButtonState = buttonState;
  
  
- if (watts_used >=0.5) 
  
- {
-   Serial.print('a');//send to main station
-   lcd.clear();
-  lcd.print("Power exceeded");
-   delay(3000);
-   watts_used=0;
-   lcd.clear();
- lcd.setCursor(0,0);
- lcd.print(" pulses: ");
- lcd.setCursor(0,1);
- lcd.print(" watts used ");
-
-   
- }
  
 
 }
