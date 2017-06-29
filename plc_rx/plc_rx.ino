@@ -6,9 +6,9 @@ The circuit:
  * note rx of arduino goes to tx
  */
 #include <LiquidCrystal.h>
-
-// initialize the library with the numbers of the interface pins
 LiquidCrystal lcd( 2, 3, 4, 5, 11, 12);
+// initialize the library with the numbers of the interface pins
+
 #include <SoftwareSerial.h>
 // software serial #1: RX = digital pin 6, TX = digital pin 7
 //PLC
@@ -107,6 +107,7 @@ void loop() {
       //digitalWrite(13,HIGH);
       sendmessage1();
       lcd.print("message 1 being sent");
+      delay(2000);
       }
       else if(count==2)
       {
