@@ -26,7 +26,7 @@ void setup() {
   portOne.begin(9600);
   portTwo.begin(9600);
   pinMode(13,OUTPUT);
-  digitalWrite(13,HIGH);
+  digitalWrite(13,LOW);
   //lcd
  lcd.display();
  lcd.print(":D");
@@ -105,14 +105,21 @@ void loop() {
       {
       digitalWrite(13,HIGH);
       sendmessage1();
+      lcd.print("message one being sent");
       }
       else if(count==2)
       {
         sendmessage2();
+        lcd.print("message one being sent");
       }
        else if(count==3)
       {
         sendmessage3();
+        lcd.print("message one being sent");
+       
+
+
+        
       }
   }
 }

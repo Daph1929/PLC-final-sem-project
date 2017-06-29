@@ -46,31 +46,29 @@ void setup()
 void loop()
 
 {
+  
   if(Serial.available() >0)
   {
    char inchar=Serial.read(); 
     if (inchar=='d')
       {   
-          lcd.clear();
-          lcd.print("3 warning messages rec.");
-          lcd.print("cutting power");
-          digitalWrite(9,LOW);//input to relay to turn off supply
-          //digitalWrite(13, HIGH);
-          delay(3000);
+          //lcd.clear();
+          //lcd.print("3 warning messages rec.");
+          //lcd.print("cutting power");
+         // digitalWrite(9,LOW);//input to relay to turn off supply
+          digitalWrite(9, HIGH);
           //Serial.print('s');/telling plc to pt power back on
        }
         else if(inchar=='c')
         {
-           digitalWrite(9,HIGH);//input to relay to turn on supply
+           digitalWrite(9,LOW);//input to relay to turn on supply
           //digitalWrite(13, LOW);
         }
+           
+   
         
   }
-   lcd.clear();
-   lcd.setCursor(0,0);
-   lcd.print(" pulses: ");
-   lcd.setCursor(0,1);
-   lcd.print(" watts used ");
+
  unsigned long currentMillis = millis();
  
  if (currentMillis - previousMillis >= interval){
@@ -100,15 +98,21 @@ void loop()
  lastButtonState = buttonState;
  
  
- if (watts_used >= 2) 
+ if (watts_used >=0.5) 
  
  {
    Serial.print('a');//send to main station
    lcd.clear();
-   lcd.print("Power exceeded");
-   delay(1000);
+  lcd.print("Power exceeded");
+   delay(3000);
    watts_used=0;
+   lcd.clear();
+ lcd.setCursor(0,0);
+ lcd.print(" pulses: ");
+ lcd.setCursor(0,1);
+ lcd.print(" watts used ");
 
+   
  }
  
 
