@@ -25,9 +25,7 @@ void setup() {
   // Start each software serial port
   portOne.begin(9600);
   portTwo.begin(9600);
-  //pinMode(13,OUTPUT);
- // digitalWrite(13,LOW);
-  //lcd
+
  lcd.display();
  lcd.print("PLC RX PART");
  delay(2000);
@@ -58,6 +56,7 @@ void sendmessage1()
   delay(1000);
   portTwo.write(0x1A);
   delay(1000);
+  lcd.clear();
   lcd.print("message 1.. sent ");
  
 }
@@ -106,20 +105,31 @@ void loop() {
       {
       //digitalWrite(13,HIGH);
       sendmessage1();
-      lcd.print("message 1 being sent");
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("message 1");
+      lcd.setCursor(0,1)
+      lcd.print("being sent");
       delay(2000);
       }
       else if(count==2)
       {
         sendmessage2();
         lcd.clear();
-        lcd.print("message 2 being sent");
+        lcd.setCursor(0,0);
+      lcd.print("message 2");
+      lcd.setCursor(0,1)
+      lcd.print("being sent");
       }
        else if(count==3)
       {
         lcd.clear();
         sendmessage3();
-        lcd.print("message 3 being sent");
+        lcd.setCursor(0,0);
+      lcd.print("message 3");
+      lcd.setCursor(0,1)
+      lcd.print("being sent");
+      
        
 
 
