@@ -1,0 +1,52 @@
+There are two ciruits
+
+1) Consumer side.
+2) Electricity Department Side(present t the Distribution transformer).
+
+Consumer Side.
+---------------------------
+Task: Measure rate at which power is used. If the rate exceeds a certain limit
+      proving to be potentially dangerous for the distribution transformer, 
+      the user has to be warned and after 3 warnings, if usage of power hasn't
+      decreased, current flow has to be cut off.
+
+How to measure Rate at which power is being used??
+---------------------------------
+On the meter , an led is present. It Blinks due to the generation of a certain
+pulse rate when power is being consumed. We have to measure the number pulses 
+per unit hour , to calculate the pulse rate. This value is to be multiplied by
+a certain factor (0.3125 in our case) to determine the watts used per hour.
+
+How did we do it?
+----------------
+The terminals of the the led (indiating pulses) present on the meter 
+was connected to the anode and cothode pins of an octocoupler.
+the collector pin of the octocoupler was given to one pin in the controller
+to count the pulses.
+
+Circuit Diagram explanation
+--------------------------------
+Live and Neutral .----> to PlC modem and 12v Rectifier.
+Out put of rectifer---->to 5v Regulator
+5v from regulator -----> Power atmega328 controller
+                 -----> On board ftdi232 USB to Serial converter(programmer)
+                 ----->PlC modem
+                 -----> LCD Display
+Atmega328 controller---> takes input from octocoupler
+                   ---->Displays pulses and watts used on LCD
+                   ---->when consumption of power rate has been exceeded
+                       conntroller send a command to PLC modem
+                     and the plc modem communicated this through power lines
+                    to the PLC modem at the distribution transformer.
+12v Relay------------->connected to one pin of controller, cuts the power
+                       supply accordingly.
+
+Distribution Transformer side.
+-----------------------------------
+consits of a PLC modem, atmega328 controller, GSM module. 
+Other components include the ftdi232, 5v rectifier.
+                 
+when the PLC modem receives a code , when rate of power usage has been 
+exceeded, the GSM is alerted to send a message to the consumer.
+After two warnings , the power will get cut off.
+
