@@ -350,8 +350,8 @@ UsedLibrary="/home/daph/Documents/eagle-8.1.0/lbr/zilog.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="85 44 1284 643"
-State=2
+Loc="65 -3 664 396"
+State=1
 Number=0
 
 [Desktop]

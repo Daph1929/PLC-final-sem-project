@@ -50,7 +50,7 @@ void sendmessage1()
 {
    portTwo.print("\r");   
   delay(1000);
-   portTwo.print("AT+CMGS=\"7263019286\"\r");    //Number to which you want to send the sms
+   portTwo.print("AT+CMGS=\"9850066713\"\r");    //Number to which you want to send the sms
   delay(1000);
    portTwo.print("warning 1 \r");   //The text of the message to be sent
   delay(1000);
@@ -64,7 +64,7 @@ void sendmessage2()
 {
    portTwo.print("\r");   
   delay(1000);
- portTwo.print("AT+CMGS=\"7263019286\"\r");    //Number to which you want to send the sms
+ portTwo.print("AT+CMGS=\"9850066713\"\r");    //Number to which you want to send the sms
   delay(1000);
  portTwo.print("warning 2\r");   //The text of the message to be sent
   delay(1000);
@@ -76,7 +76,7 @@ void sendmessage3()
 {
    portTwo.print("\r");   
   delay(1000);
-   portTwo.print("AT+CMGS=\"7263019286\"\r");    //Number to which you want to send the sms
+   portTwo.print("AT+CMGS=\"9850066713\"\r");    //Number to which you want to send the sms
   delay(1000);
    portTwo.print("warning 3\r");   //The text of the message to be sent
   delay(1000);
@@ -108,7 +108,7 @@ void loop() {
       lcd.clear();
       lcd.setCursor(0,0);
       lcd.print("message 1");
-      lcd.setCursor(0,1)
+      lcd.setCursor(0,1);
       lcd.print("being sent");
       delay(2000);
       }
@@ -118,16 +118,17 @@ void loop() {
         lcd.clear();
         lcd.setCursor(0,0);
       lcd.print("message 2");
-      lcd.setCursor(0,1)
+      lcd.setCursor(0,1);
       lcd.print("being sent");
       }
        else if(count==3)
       {
-        lcd.clear();
+        
         sendmessage3();
+        lcd.clear();
         lcd.setCursor(0,0);
       lcd.print("message 3");
-      lcd.setCursor(0,1)
+      lcd.setCursor(0,1);
       lcd.print("being sent");
       
        
